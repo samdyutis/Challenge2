@@ -1,0 +1,23 @@
+language: python
+python:
+  - "3.9"
+
+# Define the stages of the CI/CD pipeline
+stages:
+  - build
+  - test
+
+# Define jobs for each stage
+jobs:
+  include:
+    - stage: build
+      name: "Build"
+      install:
+        - pip install -r requirements.txt
+      script:
+        - python setup.py build
+
+    - stage: test
+      name: "Run Tests"
+      script:
+        - python -m unittest discover tests
